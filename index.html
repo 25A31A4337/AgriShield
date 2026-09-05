@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AgriShield | Smart Crop Protection</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="AgriShield.css">
+</head>
+
+<body>
+
+<!-- ===== AGRI-SHIELD-AUTH-PATCH-V1 ===== -->
+<div id="authGate">
+  <span class="auth-particle auth-p1"></span><span class="auth-particle auth-p2"></span>
+  <span class="auth-particle auth-p3"></span><span class="auth-particle auth-p4"></span>
+  <div class="auth-scene">
+    <div class="auth-card" id="authCard">
+      <div class="auth-face auth-front">
+        <div class="auth-brand">
+          <div class="auth-logo">🌾</div>
+          <h1>Agri<span style="color:#078b2d">Shield</span></h1>
+          <p>Smart crop protection starts here.</p>
+        </div>
+        <form id="authLoginForm" autocomplete="on">
+          <div class="auth-field">
+            <label for="authLoginMobile">📱 Registered Mobile</label>
+            <div class="auth-input-wrap">
+              <input id="authLoginMobile" type="tel" inputmode="numeric" maxlength="10" placeholder="Enter 10-digit mobile" autocomplete="username" required>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="authLoginPassword">🔐 Password</label>
+            <div class="auth-input-wrap">
+              <input id="authLoginPassword" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+              <button class="auth-eye" type="button" data-eye="authLoginPassword" aria-label="Show password">👁️</button>
+            </div>
+          </div>
+          <div class="auth-error" id="authLoginError"></div>
+          <button class="auth-btn" type="submit">🔐 Login to AgriShield</button>
+        </form>
+        <div class="auth-switch">New farmer? <button class="auth-link" id="showCreateAccount" type="button">🌱 Create Account</button></div>
+      </div>
+
+      <div class="auth-face auth-back">
+        <div class="auth-brand">
+          <div class="auth-logo">🌱</div>
+          <h1>Create Account</h1>
+          <p>Register once, then use your mobile + password.</p>
+        </div>
+        <form id="authCreateForm" autocomplete="on">
+          <div class="auth-field">
+            <label for="authCreateName">👤 Farmer Name</label>
+            <input id="authCreateName" type="text" placeholder="Enter your name" autocomplete="name" required>
+          </div>
+          <div class="auth-field">
+            <label for="authCreateMobile">📱 Mobile Number</label>
+            <input id="authCreateMobile" type="tel" inputmode="numeric" maxlength="10" placeholder="Enter 10-digit mobile" autocomplete="tel" required>
+          </div>
+          <div class="auth-field">
+            <label for="authCreatePassword">🔐 Password</label>
+            <div class="auth-input-wrap">
+              <input id="authCreatePassword" type="password" minlength="4" placeholder="Create password" autocomplete="new-password" required>
+              <button class="auth-eye" type="button" data-eye="authCreatePassword">👁️</button>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="authConfirmPassword">🔐 Confirm Password</label>
+            <div class="auth-input-wrap">
+              <input id="authConfirmPassword" type="password" minlength="4" placeholder="Confirm password" autocomplete="new-password" required>
+              <button class="auth-eye" type="button" data-eye="authConfirmPassword">👁️</button>
+            </div>
+          </div>
+          <div class="auth-error" id="authCreateError"></div>
+          <button class="auth-btn" type="submit">✅ Create AgriShield Account</button>
+        </form>
+        <div class="auth-switch">Already registered? <button class="auth-link" id="showLogin" type="button">← Back to Login</button></div>
+      </div>
+
+      <div class="auth-success" id="authSuccess">
+        <div class="auth-check">✓</div>
+        <h2 id="authSuccessTitle">Welcome to AgriShield!</h2>
+        <p id="authSuccessText">Login successful! You are ready to enter AgriShield.</p>
+        <div class="auth-hint">Secure session activated on this device.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- =====================================================
+APP
+===================================================== -->
+
+<div
+id="appShell"
+style="display:block">
+
+
+<header>
+
+<div class="logo">
+🌾 Agri<span>Shield</span>
+</div>
+
+<div class="header-actions">
+
+<button
+class="round-btn"
+id="themeBtn">
+🌙
+</button>
+
+<button
+class="round-btn"
+id="languageBtn">
+🌐
+</button>
+
+<div
+class="profile-mini"
+id="miniProfile">
+👤 Farmer
+</div>
+
+</div>
+
+</header>
+
+
+<!-- HOME -->
+
+<section
+id="home"
+class="active">
+
+<div class="hero">
+
+<h1 data-i18n="heroTitle">
+🌱 Early Detection. Smarter Farming. Healthier Crops.
+</h1>
+
+<p data-i18n="heroText">
+AgriShield helps farmers detect crop diseases and pests early,
+understand environmental risks and take practical management action.
+</p>
+
+<div class="hero-buttons">
+
+<button
+class="btn"
+data-go="scan"
+data-i18n="scanCrop">
+📷 Scan My Crop
+</button>
+
+<button
+class="btn secondary"
+data-go="advisory"
+data-i18n="actionPlan">
+🧠 View Action Plan
+</button>
+
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat-card">
+
+<div data-i18n="cropHealth">
+🌱 Crop Health
+</div>
+
+<div
+class="stat-number"
+id="healthNumber">
+82%
+</div>
+
+<div class="progress">
+
+<div
+id="healthBar"
+style="width:82%">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div data-i18n="totalScans">
+📷 Total Scans
+</div>
+
+<div
+class="stat-number"
+id="scanCount">
+0
+</div>
+
+<small data-i18n="realScans">
+Actual scans performed
+</small>
+
+</div>
+
+
+<div class="stat-card">
+
+<div>
+🐛 Pest Risk
+</div>
+
+<div
+class="stat-number"
+id="homePestRisk">
+38%
+</div>
+
+<span class="badge yellow">
+MODERATE
+</span>
+
+</div>
+
+
+<div class="stat-card">
+
+<div>
+⚠️ Disease Risk
+</div>
+
+<div
+class="stat-number"
+id="homeDiseaseRisk">
+72%
+</div>
+
+<span class="badge red">
+HIGH
+</span>
+
+</div>
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+
+<div class="icon">
+📷
+</div>
+
+<h3 data-i18n="scanner">
+AI Crop Scanner
+</h3>
+
+<p data-i18n="scannerText">
+Capture a crop photo and receive a simulated AI diagnosis.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+🌦️
+</div>
+
+<h3 data-i18n="weatherRisk">
+Weather & Risk
+</h3>
+
+<p data-i18n="weatherText">
+View temperature, humidity, rainfall and disease risk.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+🐛
+</div>
+
+<h3 data-i18n="pestMonitoring">
+Pest Monitoring
+</h3>
+
+<p data-i18n="pestText">
+Track pest observations and infestation severity.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+🧠
+</div>
+
+<h3 data-i18n="smartAdvisory">
+Smart Advisory
+</h3>
+
+<p data-i18n="advisoryText">
+Turn AI findings into clear actions.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3 data-i18n="quickAccess">
+Quick Access
+</h3>
+
+<div class="menu-grid">
+
+<button class="menu-btn" data-go="weather">
+🌦️ Weather & Risk
+</button>
+
+<button class="menu-btn" data-go="pest">
+🐛 Pest Monitoring
+</button>
+
+<button class="menu-btn" data-go="farm">
+🌱 My Farm
+</button>
+
+<button class="menu-btn" data-go="alerts">
+🔔 Alerts
+</button>
+
+<button class="menu-btn" data-go="history">
+📊 Crop Health History
+</button>
+
+<button class="menu-btn" data-go="documents">
+📁 Saved Documents
+</button>
+
+<button class="menu-btn" data-go="profile">
+👤 Profile
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SCAN -->
+
+<section id="scan">
+
+<button
+class="back-btn"
+data-back>
+← <span data-i18n="back">Back</span>
+</button>
+
+<h2 class="title"
+data-i18n="scanCropTitle">
+Scan Crop
+</h2>
+
+<p class="subtitle"
+data-i18n="scanSubtitle">
+Take a photo or choose a crop image for AI analysis.
+</p>
+
+
+<div class="camera-container">
+
+<div class="camera-icon">
+📸
+</div>
+
+<h3 data-i18n="cropPhoto">
+Take or Select Crop Photo
+</h3>
+
+<p
+style="color:var(--muted);margin-top:8px"
+data-i18n="cameraHelp">
+Use your camera to take a new photo or select one from Photos.
+</p>
+
+
+<!-- CAMERA INPUT
+     capture makes the browser request the rear camera.
+-->
+
+<input
+type="file"
+id="cameraInput"
+class="hidden-file"
+accept="image/*"
+capture="environment">
+
+
+<!-- GALLERY INPUT -->
+
+<input
+type="file"
+id="galleryInput"
+class="hidden-file"
+accept="image/*">
+
+
+<div class="camera-options">
+
+<label
+for="cameraInput"
+class="camera-option take">
+
+📷 <span data-i18n="takePhoto">
+Take Photo
+</span>
+
+</label>
+
+
+<label
+for="galleryInput"
+class="camera-option gallery">
+
+🖼️ <span data-i18n="choosePhoto">
+Choose Photo
+</span>
+
+</label>
+
+</div>
+
+
+<img
+id="preview"
+alt="Crop preview">
+
+
+<div
+id="imageName"
+class="image-name">
+</div>
+
+
+<div
+class="scan-loader"
+id="loader">
+</div>
+
+
+<button
+class="btn"
+id="analyzeBtn"
+data-i18n="analyze">
+🧠 Analyze Crop
+</button>
+
+</div>
+
+
+<div
+class="card result"
+id="scanResult">
+
+<h2 data-i18n="latestResult">
+Latest AI Result
+</h2>
+
+<br>
+
+<div class="grid">
+
+<div>
+
+<h3>🌱 Crop</h3>
+
+<p id="resultCrop">
+Tomato
+</p>
+
+</div>
+
+
+<div>
+
+<h3>🦠 Detection</h3>
+
+<p id="resultDetection">
+Early Blight
+</p>
+
+</div>
+
+
+<div>
+
+<h3>🎯 Confidence</h3>
+
+<p>
+<b id="resultConfidence">
+94%
+</b>
+</p>
+
+</div>
+
+
+<div>
+
+<h3>⚠️ Severity</h3>
+
+<span
+class="badge red"
+id="resultSeverity">
+HIGH
+</span>
+
+</div>
+
+</div>
+
+<br>
+
+<h3 data-i18n="symptoms">
+Symptoms
+</h3>
+
+<p id="resultSymptoms">
+Leaf spots detected.
+</p>
+
+<br>
+
+<h3 data-i18n="recommendation">
+💡 Recommendation
+</h3>
+
+<p id="resultRecommendation">
+Remove severely affected leaves, improve airflow
+and avoid prolonged leaf wetness.
+</p>
+
+<br>
+
+<button
+class="btn"
+id="saveScanBtn"
+data-i18n="saveReport">
+💾 Save Scan Report
+</button>
+
+<button
+class="btn orange"
+data-go="advisory"
+data-i18n="viewAdvisory">
+🧠 View Management Advisory
+</button>
+
+</div>
+
+</section>
+
+
+<!-- WEATHER -->
+
+<section id="weather">
+
+<button class="back-btn" data-back>
+← <span data-i18n="back">Back</span>
+</button>
+
+<h2 class="title"
+data-i18n="weatherRiskTitle">
+Weather & Risk
+</h2>
+
+<p class="subtitle"
+data-i18n="weatherRiskSubtitle">
+Weather and crop disease risk information.
+</p>
+
+
+<div class="weather-main">
+
+<button
+class="btn secondary"
+id="refreshWeather"
+style="float:right">
+
+↻ Refresh
+
+</button>
+
+<div>
+📍
+<span id="weatherLocation">
+Nashik, Maharashtra
+</span>
+</div>
+
+<div class="weather-temp">
+
+<span id="temperature">
+27
+</span>°C
+
+</div>
+
+<div>
+Partly Cloudy ☁️
+</div>
+
+
+<div class="weather-grid">
+
+<div class="weather-item">
+💧 Humidity<br>
+<b id="humidity">78%</b>
+</div>
+
+<div class="weather-item">
+🌧️ Rain<br>
+<b id="rainChance">70%</b>
+</div>
+
+<div class="weather-item">
+🌬️ Wind<br>
+<b>12 km/h</b>
+</div>
+
+<div class="weather-item">
+☀️ UV<br>
+<b>6 Moderate</b>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+🌡️ Today
+</h3>
+
+<div class="stat-number">
+<span id="todayTemp">27</span>°C
+</div>
+
+<span
+class="badge yellow"
+id="todayRainBadge">
+RAIN 70%
+</span>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+🦠 Disease Risk
+</h3>
+
+<div
+class="stat-number"
+style="color:var(--danger)"
+id="diseaseRisk">
+78%
+</div>
+
+<span
+class="badge red"
+id="diseaseBadge">
+HIGH
+</span>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+7-Day Forecast
+</h3>
+
+<div class="forecast">
+
+<div class="forecast-day">
+<b>MON</b><br>27°<br>70%
+</div>
+
+<div class="forecast-day">
+<b>TUE</b><br>26°<br>65%
+</div>
+
+<div class="forecast-day">
+<b>WED</b><br>28°<br>35%
+</div>
+
+<div class="forecast-day">
+<b>THU</b><br>29°<br>20%
+</div>
+
+<div class="forecast-day">
+<b>FRI</b><br>30°<br>15%
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Why is risk high?
+</h3>
+
+<div class="alert medium">
+
+<div>
+• High humidity + expected rainfall<br>
+• Flowering stage of crop<br>
+• Favorable conditions for fungal disease
+</div>
+
+</div>
+
+</div>
+
+
+<button
+class="btn"
+id="recalculateRisk">
+
+↻ Recalculate Crop Risk
+</button>
+
+
+<button
+class="btn secondary"
+id="saveWeatherBtn">
+
+💾 Save Weather Report
+</button>
+
+</section>
+
+
+<!-- PEST -->
+
+<section id="pest">
+
+<button class="back-btn" data-back>
+← <span data-i18n="back">Back</span>
+</button>
+
+<h2 class="title"
+data-i18n="pestMonitoring">
+Pest Monitoring
+</h2>
+
+<p class="subtitle">
+Track pest observations and infestation severity.
+</p>
+
+
+<div class="card">
+
+<h3>
+🐛 Pest Scan
+</h3>
+
+<div style="font-size:20px;margin:8px 0">
+Fruit Fly
+</div>
+
+<span class="badge red">
+HIGH RISK
+</span>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Recent Reports
+</h3>
+
+<div class="alert high">
+<b>31 Aug</b>
+<div>
+<b>Fruit Fly</b><br>
+<span class="badge red">HIGH</span>
+</div>
+</div>
+
+<div class="alert medium">
+<b>29 Aug</b>
+<div>
+<b>Aphids</b><br>
+<span class="badge yellow">MEDIUM</span>
+</div>
+</div>
+
+<div class="alert low">
+<b>25 Aug</b>
+<div>
+<b>No Pest</b><br>
+<span class="badge green">LOW</span>
+</div>
+</div>
+
+</div>
+
+
+<div
+class="grid"
+id="pestCards">
+
+<div class="card pest-card">
+
+<div class="icon">
+🪰
+</div>
+
+<h3>
+Whitefly
+</h3>
+
+<span class="badge red">
+HIGH
+</span>
+
+<p>
+Increasing activity detected.
+</p>
+
+<div class="progress">
+<div style="width:82%"></div>
+</div>
+
+<button class="btn secondary remove-pest">
+Remove
+</button>
+
+</div>
+
+
+<div class="card pest-card">
+
+<div class="icon">
+🐜
+</div>
+
+<h3>
+Aphids
+</h3>
+
+<span class="badge yellow">
+MODERATE
+</span>
+
+<p>
+Observed on several plants.
+</p>
+
+<div class="progress">
+<div style="width:55%"></div>
+</div>
+
+<button class="btn secondary remove-pest">
+Remove
+</button>
+
+</div>
+
+
+<div class="card pest-card">
+
+<div class="icon">
+🐛
+</div>
+
+<h3>
+Caterpillar
+</h3>
+
+<span class="badge green">
+LOW
+</span>
+
+<p>
+Limited activity.
+</p>
+
+<div class="progress">
+<div style="width:25%"></div>
+</div>
+
+<button class="btn secondary remove-pest">
+Remove
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+➕ Report New Pest
+</h3>
+
+<div class="form-group">
+
+<label>
+Pest Name
+</label>
+
+<select id="pestName">
+
+<option>Fruit Fly</option>
+<option>Whitefly</option>
+<option>Aphids</option>
+<option>Caterpillar</option>
+<option>Thrips</option>
+<option>Stem Borer</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Severity
+</label>
+
+<select id="pestSeverity">
+
+<option>Low</option>
+<option>Moderate</option>
+<option>High</option>
+
+</select>
+
+</div>
+
+
+<button
+class="btn"
+id="addPest">
+
+➕ Add Observation
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ADVISORY -->
+
+<section id="advisory">
+
+<button class="back-btn" data-back>
+← <span data-i18n="back">Back</span>
+</button>
+
+<h2 class="title">
+Smart Advisory
+</h2>
+
+<p class="subtitle">
+Smart crop management action plan.
+</p>
+
+
+<div class="card">
+
+<span class="badge red">
+HIGH RISK
+</span>
+
+<h2 style="margin:12px 0">
+Tomato Early Blight
+</h2>
+
+
+<div
+class="card"
+style="background:#e4f7e9">
+
+<h3>
+TODAY
+</h3>
+
+<p>
+✓ Inspect affected leaves<br>
+✓ Monitor nearby plants
+</p>
+
+</div>
+
+
+<div
+class="card"
+style="background:#fff0d5">
+
+<h3 style="color:#d07a00">
+NEXT 2 DAYS
+</h3>
+
+<p>
+✓ Check crop after rainfall<br>
+✓ Track spread using another scan
+</p>
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+1️⃣ Inspect
+</h3>
+
+<p>
+Check nearby leaves for similar symptoms.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+2️⃣ Remove
+</h3>
+
+<p>
+Remove severely affected material where appropriate.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+3️⃣ Monitor
+</h3>
+
+<p>
+Repeat crop scanning to track progression.
+</p>
+
+</div>
+
+</div>
+
+
+<button
+class="btn"
+id="saveAdvisoryBtn">
+
+💾 Save Action Plan
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- FARM -->
+
+<section id="farm">
+
+<button class="back-btn" data-back>
+← <span data-i18n="back">Back</span>
+</button>
+
+<h2 class="title">
+My Farm
+</h2>
+
+<p class="subtitle">
+Manage your farm and crop information.
+</p>
+
+
+<div class="card">
+
+<div class="icon">
+🌱
+</div>
+
+<h2 id="farmFarmer">
+Farmer
+</h2>
+
+<br>
+
+<div class="grid">
+
+<div>
+<b>Crop</b>
+<p>Tomato</p>
+</div>
+
+<div>
+<b>Farm Area</b>
+<p>2.5 Acres</p>
+</div>
+
+<div>
+<b>Crop Stage</b>
+<p>Flowering</p>
+</div>
+
+<div>
+<b>Status</b>
+<p>
+<span class="badge green">
+HEALTHY
+</span>
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ALERTS -->
+
+<section id="alerts">
+
+<button class="back-btn" data-back>
+← <span data-i18n="back">Back</span>
+</button>
+
+<h2 class="title">
+Alerts
+</h2>
+
+<p class="subtitle">
+Important crop health and weather notifications.
+</p>
+
+
+<div class="alert high">
+
+<div style="font-size:22px">
+🚨
+</div>
+
+<div>
+
+<b>
+High Disease Risk
+</b>
+
+<p>
+Tomato early blight risk is currently high.
+Inspect affected plants.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="alert medium">
+
+<div style="font-size:22px">
+🌧️
+</div>
+
+<div>
+
+<b>
+Rain Expected
+</b>
+
+<p>
+Rain may increase fungal disease risk.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="alert medium">
+
+<div style="font-size:22px">
+🐛
+</div>
+
+<div>
+
+<b>
+Pest Activity
+</b>
+
+<p>
+Whitefly activity is increasing.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="alert low">
+
+<div style="font-size:22px">
+✅
+</div>
+
+<div>
+
+<b>
+Crop Health Stable
+</b>
+
+<p>
+Overall crop health is currently 82%.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HISTORY -->
+
+<section id="history">
+
+<button class="back-btn" data-back>
+← <span data-i18n="back">Back</span>
+</button>
+
+<h2 class="title">
+Crop Health History
+</h2>
+
+<p class="subtitle">
+Only your actual crop scan records are shown here.
+</p>
+
+
+<div class="card">
+
+<h3>
+📈 Health Trend
+</h3>
+
+<div class="chart">
+
+<svg
+id="healthChart"
+viewBox="0 0 700 180"
+preserveAspectRatio="none">
+</svg>
+
+</div>
+
+<div
+class="chart-labels"
+id="chartLabels">
+No scans yet
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+flex-wrap:wrap">
+
+<h3>
+📋 Scan History
+</h3>
+
+<button
+class="btn red"
+id="clearHistoryBtn">
+
+🗑️ Clear
+
+</button>
+
+</div>
+
+<br>
+
+<div class="table-wrap">
+
+<table class="history-table">
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+<th>Crop</th>
+<th>Detection</th>
+<th>Confidence</th>
+<th>Severity</th>
+
+</tr>
+
+</thead>
+
+<tbody id="historyBody">
+</tbody>
+
+</table>
+
+</div>
+
+
+<div
+id="emptyHistory"
+class="empty"
+style="display:none">
+
+<div style="font-size:50px">
+📷
+</div>
+
+<h3>
+No Scan History
+</h3>
+
+<p>
+Analyze your crop to create your first record.
+</p>
+
+<br>
+
+<button
+class="btn"
+data-go="scan">
+
+📷 Scan My Crop
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DOCUMENTS -->
+
+<section id="documents">
+
+<button class="back-btn" data-back>
+← <span data-i18n="back">Back</span>
+</button>
+
+<h2 class="title">
+Saved Documents
+</h2>
+
+<p class="subtitle">
+Your saved crop reports, weather reports and action plans.
+</p>
+
+
+<div
+id="documentsList">
+</div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section id="profile">
+
+<button class="back-btn" data-back>
+← <span data-i18n="back">Back</span>
+</button>
+
+<h2 class="title">
+Profile
+</h2>
+
+<p class="subtitle">
+Manage your AgriShield account.
+</p>
+
+
+<div class="card">
+
+<div class="icon">
+👤
+</div>
+
+<h2 id="profileName">
+Farmer
+</h2>
+
+<p id="profileMobile">
++91 XXXXX XXXXX
+</p>
+
+<br>
+
+<div class="form-group">
+
+<label>
+Farmer Name
+</label>
+
+<input id="editName">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Mobile Number
+</label>
+
+<input id="editMobile">
+
+</div>
+
+
+<button
+class="btn"
+id="saveProfile">
+
+💾 Save Profile
+
+</button>
+
+
+</div>
+
+</section>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+<button data-go="home" class="active">
+<i class="fa-solid fa-house"></i>
+<span data-i18n="home">Home</span>
+</button>
+
+<button data-go="scan">
+<i class="fa-solid fa-camera"></i>
+<span data-i18n="scan">Scan</span>
+</button>
+
+<button data-go="weather">
+<i class="fa-solid fa-cloud-sun"></i>
+<span data-i18n="weather">Weather</span>
+</button>
+
+<button data-go="pest">
+<i class="fa-solid fa-bug"></i>
+<span data-i18n="pests">Pests</span>
+</button>
+
+<button data-go="history">
+<i class="fa-solid fa-chart-line"></i>
+<span data-i18n="history">History</span>
+</button>
+
+<button data-go="documents">
+<i class="fa-solid fa-folder-open"></i>
+<span data-i18n="documents">Documents</span>
+</button>
+
+<button data-go="profile">
+<i class="fa-solid fa-user"></i>
+<span data-i18n="profile">Profile</span>
+</button>
+
+</nav>
+
+</div>
+
+
+<!-- LANGUAGE MODAL -->
+
+<div
+class="modal"
+id="languageModal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
+<h2>
+🌐 Select Language
+</h2>
+
+<button
+class="close-modal"
+id="closeLanguage">
+×
+</button>
+
+</div>
+
+
+<div class="language-options">
+
+<button
+class="language-option"
+data-language="en">
+
+🇬🇧 English
+
+</button>
+
+<button
+class="language-option"
+data-language="te">
+
+🇮🇳 తెలుగు
+
+</button>
+
+<button
+class="language-option"
+data-language="hi">
+
+🇮🇳 हिन्दी
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DOCUMENT MODAL -->
+
+<div
+class="modal"
+id="documentModal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
+<h2 id="modalTitle">
+Document
+</h2>
+
+<button
+class="close-modal"
+id="closeDocument">
+×
+</button>
+
+</div>
+
+<div id="modalContent"></div>
+
+</div>
+
+</div>
+
+
+<div id="toast"></div>
+
+
+
+
+
+
+
+
+
+
+<!-- FINAL STABILITY PATCH: reliable image handling, non-blocking scan fallback, full scan translation, voice fallback -->
+
+
+
+
+
+
+
+
+
+  <script src="AgriShield.js"></script>
+</body>
+</html>
