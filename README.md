@@ -284,3 +284,7 @@ Focus: Crop Health, Disease Detection, Pest Monitoring & Smart Advisory
 ⭐ If you like this project
 
 Give the repository a ⭐ and share AgriShield with others interested in Smart Agriculture, AI, Web Development and AgriTech.
+
+---
+
+Link:https://25a31a4337.github.io/AgriShield/
